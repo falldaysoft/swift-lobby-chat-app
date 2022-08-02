@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8452DD2128881FAC007E3413 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8452DD2028881FAC007E3413 /* NotificationManager.swift */; };
 		8466AB57288456B60019DCAA /* SwiftLobbyChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466AB56288456B60019DCAA /* SwiftLobbyChatApp.swift */; };
 		8466AB59288456B60019DCAA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466AB58288456B60019DCAA /* MainView.swift */; };
 		8466AB5B288456B80019DCAA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8466AB5A288456B80019DCAA /* Assets.xcassets */; };
@@ -17,9 +18,11 @@
 		8466AB70288498F00019DCAA /* ChatMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466AB6F288498F00019DCAA /* ChatMessageView.swift */; };
 		8466AB72288499640019DCAA /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466AB71288499640019DCAA /* ChatView.swift */; };
 		8466AB7428849BAF0019DCAA /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8466AB7328849BAF0019DCAA /* ChatMessage.swift */; };
+		84CB4C452898A0A4005687B2 /* LobbyConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84CB4C442898A0A4005687B2 /* LobbyConfigView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8452DD2028881FAC007E3413 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		8466AB53288456B60019DCAA /* SwiftLobbyChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftLobbyChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8466AB56288456B60019DCAA /* SwiftLobbyChatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftLobbyChatApp.swift; sourceTree = "<group>"; };
 		8466AB58288456B60019DCAA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -28,10 +31,10 @@
 		8466AB67288456FE0019DCAA /* SwiftLobbyChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwiftLobbyChat.entitlements; sourceTree = "<group>"; };
 		8466AB692884575D0019DCAA /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		8466AB6B288457880019DCAA /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		8466AB6D28845AB60019DCAA /* swift-lobby-client */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "swift-lobby-client"; path = "../swift-lobby-client"; sourceTree = "<group>"; };
 		8466AB6F288498F00019DCAA /* ChatMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageView.swift; sourceTree = "<group>"; };
 		8466AB71288499640019DCAA /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		8466AB7328849BAF0019DCAA /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
+		84CB4C442898A0A4005687B2 /* LobbyConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobbyConfigView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +52,6 @@
 		8466AB4A288456B60019DCAA = {
 			isa = PBXGroup;
 			children = (
-				8466AB6D28845AB60019DCAA /* swift-lobby-client */,
 				8466AB55288456B60019DCAA /* SwiftLobbyChat */,
 				8466AB54288456B60019DCAA /* Products */,
 			);
@@ -66,14 +68,16 @@
 		8466AB55288456B60019DCAA /* SwiftLobbyChat */ = {
 			isa = PBXGroup;
 			children = (
+				8466AB5A288456B80019DCAA /* Assets.xcassets */,
 				8466AB67288456FE0019DCAA /* SwiftLobbyChat.entitlements */,
 				8466AB56288456B60019DCAA /* SwiftLobbyChatApp.swift */,
 				8466AB6E288498D90019DCAA /* Chat Views */,
-				8466AB5A288456B80019DCAA /* Assets.xcassets */,
+				84CB4C462898A368005687B2 /* Settings UI */,
 				8466AB5C288456B80019DCAA /* Preview Content */,
-				8466AB692884575D0019DCAA /* ChatManager.swift */,
 				8466AB6B288457880019DCAA /* AppState.swift */,
 				8466AB7328849BAF0019DCAA /* ChatMessage.swift */,
+				8466AB692884575D0019DCAA /* ChatManager.swift */,
+				8452DD2028881FAC007E3413 /* NotificationManager.swift */,
 			);
 			path = SwiftLobbyChat;
 			sourceTree = "<group>";
@@ -94,6 +98,14 @@
 				8466AB6F288498F00019DCAA /* ChatMessageView.swift */,
 			);
 			path = "Chat Views";
+			sourceTree = "<group>";
+		};
+		84CB4C462898A368005687B2 /* Settings UI */ = {
+			isa = PBXGroup;
+			children = (
+				84CB4C442898A0A4005687B2 /* LobbyConfigView.swift */,
+			);
+			path = "Settings UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +190,8 @@
 				8466AB59288456B60019DCAA /* MainView.swift in Sources */,
 				8466AB57288456B60019DCAA /* SwiftLobbyChatApp.swift in Sources */,
 				8466AB72288499640019DCAA /* ChatView.swift in Sources */,
+				84CB4C452898A0A4005687B2 /* LobbyConfigView.swift in Sources */,
+				8452DD2128881FAC007E3413 /* NotificationManager.swift in Sources */,
 				8466AB6C288457880019DCAA /* AppState.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

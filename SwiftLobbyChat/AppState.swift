@@ -18,13 +18,17 @@ import SwiftLobbyClient
 class AppState: ObservableObject {
     var testMode = false
     var chatManager: ChatManager!
+    var notificationManager: NotificationManager
 
     @Published var connectionStatus = LobbyConnectionStatus.notConnected
     @Published var messages = [ChatMessage]()
     
     init(testMode: Bool = false) {
+        self.notificationManager = NotificationManager()
         self.testMode = testMode
-        self.chatManager = ChatManager(delegate: self, testMode: testMode)
+        self.chatManager = ChatManager(notificationManager: self.notificationManager,
+                                       delegate: self,
+                                       testMode: testMode)
         self.messages = self.chatManager.messages
     }
 }
@@ -36,5 +40,6 @@ extension AppState: ChatManagerDelegate {
     
     func messagesChanged() {
         self.messages = chatManager.messages
+        self.notificationManager.notify()
     }
 }

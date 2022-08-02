@@ -11,14 +11,21 @@ struct MainView: View {
     @ObservedObject var appState: AppState
     
     var body: some View {
-        switch appState.chatManager.lobbyConnectionStatus {
-        case .connected:
-            ChatView(appState: appState)
-        default:
-            VStack {
-                Text(appState.chatManager.connectionStatus)
+        if appState.chatManager.lobbyCode.isEmpty ||
+            appState.chatManager.lobbyServer.isEmpty
+        {
+            // Configure
+            LobbyConfigView(chatManager: appState.chatManager)
+        } else {
+            switch appState.chatManager.lobbyConnectionStatus {
+            case .connected:
+                ChatView(appState: appState)
+            default:
+                VStack {
+                    Text(appState.chatManager.connectionStatus)
+                }
+                    .padding()
             }
-                .padding()
         }
     }
 }

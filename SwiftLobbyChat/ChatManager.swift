@@ -22,14 +22,16 @@ class ChatManager {
 
     var connectionStatus: String = NSLocalizedString("Not connected", comment: "Lobby status")
     
-    @AppStorage("lobbyServer") var lobbyServer: String = "lobby.fallday.ca"
-    @AppStorage("chatLobby") var chatLobby: String = "CHAT!"
+    @AppStorage("lobbyServer") var lobbyServer: String = ""
+    @AppStorage("lobbyCode") var lobbyCode: String = ""
 
     var lobbyClient: LobbyClient?
     var delegate: ChatManagerDelegate?
-    var ourPlayerNum: Int?
+    var notificationManager: NotificationManager
     
-    init(delegate: ChatManagerDelegate, testMode: Bool) {
+    init(notificationManager: NotificationManager, delegate: ChatManagerDelegate, testMode: Bool) {
+        self.notificationManager = notificationManager
+        
         self.testMode = testMode
         self.delegate = delegate
         
@@ -42,15 +44,21 @@ class ChatManager {
             ]
         }
 
-        var urlString = lobbyServer
-        
-        if !urlString.hasPrefix("ws") && !urlString.hasPrefix("wss") {
-            urlString = "wss://\(lobbyServer)"
-        }
-        if let url = URL(string: urlString) {
-            lobbyClient = LobbyClient(server: url, lobbyCode: chatLobby, delegate: self)
-        } else {
-            // Can't connect, no URL
+        connect()
+    }
+
+    func connect() {
+        if !lobbyServer.isEmpty && !lobbyCode.isEmpty {
+            var urlString = lobbyServer
+            if !urlString.hasPrefix("ws") && !urlString.hasPrefix("wss") {
+                urlString = "wss://\(lobbyServer)"
+            }
+
+            if let url = URL(string: urlString)  {
+                lobbyClient = LobbyClient(server: url, lobbyCode: lobbyCode, delegate: self)
+            } else {
+                // Can't connect, no URL
+            }
         }
     }
     
@@ -86,10 +94,8 @@ extension ChatManager: LobbyClientDelegate {
     
     func lobbyDidReceiveMessage(lobbyClient: LobbyClient, message: OutgoingPlayerMessage) {
         switch message {
-        case .hello(_, let playerNum, _, _, _):
-            ourPlayerNum = playerNum
         case .say(let text, let date, let fromPlayerNum):
-            messages.append(ChatMessage(id: UUID(), isCurrentUser: fromPlayerNum == ourPlayerNum, message: text, date: date))
+            messages.append(ChatMessage(id: UUID(), isCurrentUser: fromPlayerNum == lobbyClient.ourPlayerNum, message: text, date: date))
             self.delegate?.messagesChanged()
             break
         default:
