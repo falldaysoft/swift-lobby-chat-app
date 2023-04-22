@@ -21,6 +21,11 @@ struct ChatView: View {
     
     func sendMessage() {
         let msg = typingMessage
+        if msg == ".server" {
+            appState.chatManager.lobbyCode = ""
+            appState.chatManager.lobbyServer = ""
+            return
+        }
         typingMessage = ""
         Task {
             await appState.chatManager.send(IncomingPlayerMessage.say(text: msg))

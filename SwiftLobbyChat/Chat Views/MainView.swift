@@ -25,6 +25,10 @@ struct MainView: View {
                     Text(appState.chatManager.connectionStatus)
                 }
                     .padding()
+                Button("Select a Server") {
+                    appState.chatManager.lobbyCode = ""
+                    appState.chatManager.lobbyServer = ""
+                }
             }
         }
     }

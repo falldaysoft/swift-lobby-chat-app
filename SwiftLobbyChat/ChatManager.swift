@@ -14,7 +14,7 @@ protocol ChatManagerDelegate {
     func messagesChanged()
 }
 
-class ChatManager {
+class ChatManager: ObservableObject {
     var testMode = false
     
     var messages = [ChatMessage]()
@@ -29,7 +29,7 @@ class ChatManager {
     var delegate: ChatManagerDelegate?
     var notificationManager: NotificationManager
     
-    init(notificationManager: NotificationManager, delegate: ChatManagerDelegate, testMode: Bool) {
+    init(notificationManager: NotificationManager, delegate: ChatManagerDelegate?, testMode: Bool) {
         self.notificationManager = notificationManager
         
         self.testMode = testMode

@@ -17,7 +17,7 @@ import SwiftLobbyClient
  */
 class AppState: ObservableObject {
     var testMode = false
-    var chatManager: ChatManager!
+    @Published var chatManager: ChatManager
     var notificationManager: NotificationManager
 
     @Published var connectionStatus = LobbyConnectionStatus.notConnected
@@ -27,9 +27,10 @@ class AppState: ObservableObject {
         self.notificationManager = NotificationManager()
         self.testMode = testMode
         self.chatManager = ChatManager(notificationManager: self.notificationManager,
-                                       delegate: self,
+                                       delegate: nil,
                                        testMode: testMode)
         self.messages = self.chatManager.messages
+        self.chatManager.delegate = self
     }
 }
 
